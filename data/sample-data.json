@@ -1,0 +1,30 @@
+[{
+    "id": 0,
+    "name": "Whitney Houston",
+    "age": 47,
+    "gender": "female"
+},
+    {
+    "id": 1,
+    "name": "Peter Bosten",
+    "age": 58,
+    "gender": "male"
+},
+    {
+    "id": 2,
+    "name": "Thomas Monterey",
+    "age": 28,
+    "gender": "male"
+},
+    {
+    "id": 3,
+    "name": "Dana Minneapolis",
+    "age": 47,
+    "gender": "female"
+},
+    {
+    "id": 4,
+    "name": "Suza Kansas",
+    "age": 47,
+    "gender": "diverse"
+}]

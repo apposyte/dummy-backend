@@ -1,3 +1,7 @@
+
+.idea/
+
+# from https://github.com/Azure-Samples/python-docs-hello-world
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -34,7 +34,7 @@ def index():
         response_string = '<html><head>Sample Elastic query results</head><body><ul>'
         if 'hits' in response_object and 'hits' in response_object['hits'] and len(response_object['hits']['hits']) > 0:
             for hit in response_object['hits']['hits']:
-                response_string += '<li>Name: ' + str(hit['_source']['name']) + ' (Age:' + str(hit['_source']['age']) + ')</li>'
+                response_string += '<li>Name: ' + str(hit['_source']['name']) + ' (Age: ' + str(hit['_source']['age']) + ')</li>'
 
         response_string += '</ul></body></html>'
 

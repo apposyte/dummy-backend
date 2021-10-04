@@ -9,12 +9,6 @@ from flask import Flask, Response
 config = ConfigParser()
 config.read('configuration.ini')
 
-# Query
-query_definition = {
-    "bool": {
-        "must": [{'gender': 'female'}]
-}}
-
 app = Flask(__name__)
 
 # @app.route("/")
@@ -28,13 +22,23 @@ def index():
 
         es_client =  Elasticsearch([{ 'host': config.get('DEFAULT', 'host'), 'port': config.get('DEFAULT', 'port') }])
 
-        query_object = Search()
-        query_object = query_object.query(query_definition)
-        query_object = query_object.using(es_client)
-        query_object = query_object.index(config.get('DEFAULT', 'index'))
+        query_object = Search()\
+            .using(es_client)\
+            .index(config.get('DEFAULT', 'index'))\
+            .query("match", gender="female")
+
         query_result = query_object.execute()
 
-        return query_result.to_dict()
+        response_object = query_result.to_dict()
+
+        response_string = '<html><head>Sample Elastic query results</head><body><ul>'
+        if 'hits' in response_object and 'hits' in response_object['hits'] and len(response_object['hits']['hits']) > 0:
+            for hit in response_object['hits']['hits']:
+                response_string += '<li>Name: ' + str(hit['_source']['name']) + ' (Age:' + str(hit['_source']['age']) + ')</li>'
+
+        response_string += '</ul></body></html>'
+
+        return response_string
 
     except Exception as exception:
         print(exception)
